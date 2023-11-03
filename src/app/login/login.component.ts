@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { GlobalserviceService } from '../globalservice.service';
 
 @Component({
   selector: 'app-login',
@@ -11,18 +13,32 @@ export class LoginComponent implements OnInit {
   loginForm! : FormGroup
 
   constructor(
-    private fb : FormBuilder
+    private fb : FormBuilder,
+    private http : HttpClient,
+    private api : GlobalserviceService
   ){}
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
-      email : [],
+      userID : ["",Validators.required],
       password : []
     })
   }
 
   submitLoginForm(){
-    console.log(this.loginForm.value);
+    
+
+    let obj = {
+      userId : this.loginForm.value.userID,
+      password : this.loginForm.value.password
+    }
+    
+    const url = this.api.getRouterUrl()
+
+    this.http.post(`${url}/login`,obj).subscribe((res:any)=>{
+      console.log(res,"this is response");
+      
+    })
     
   }
   
