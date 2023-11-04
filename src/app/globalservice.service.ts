@@ -13,7 +13,7 @@ export class GlobalserviceService {
   }
 
   getImageUrl() {
-    return `${this.apiUrl}`;
+    return 'http://localhost:3000';
   }
   
 }
