@@ -19,12 +19,21 @@
                         Choose file
                     </label>
                 </div>
+                <hr>
+
+                <div class="col-12 my-2">
+                    <label for="headline" class="d-flex justify-content-start my-2"><b>HeadLine :</b></label>
+                    <input type="text" class="form-control" id="headline" formControlName="headline">
+                </div>
 
                 <div class="col-12">
+                    <label for="article" class="d-flex justify-content-start my-2"><b>Article :</b></label>
                     <textarea [froalaEditor]="options2" [(froalaModel)]="content" formControlName="article"></textarea>
                 </div>
             </div>
         </form>
-        <button class="btn btn-primary" (click)="submitArticle()">Publish Article</button>
+        <div class="text-center my-3">
+            <button class="btn btn-success col-4" (click)="submitArticle()">Publish Article</button>
+        </div>
     </div>
 </div>

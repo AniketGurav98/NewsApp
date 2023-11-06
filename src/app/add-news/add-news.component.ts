@@ -29,7 +29,8 @@ export class AddNewsComponent implements OnInit {
   ngOnInit(): void {
     this.addArticle = this.fb.group({
       img : [''],
-      article : ['']
+      article : [''],
+      headline : ['']
     })
   }
 
@@ -37,8 +38,9 @@ export class AddNewsComponent implements OnInit {
     
 
     let obj = {
-      img : this.addArticle.value.img ,
-      article : this.addArticle.value.article
+      img : this.imageSrc ,
+      article : this.addArticle.value.article,
+      headline : this.addArticle.value.headline
     }
 
     console.log(obj);
