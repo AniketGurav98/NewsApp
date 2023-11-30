@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
+import { DetailArticleComponent } from './detail-article/detail-article.component';
 
 const routes: Routes = [
   {path:"",component:LoginComponent},
   {path:"add",loadChildren:()=>import('./add-news/add-news.module').then(module=> module.AddNewsModule)},
   {path:"newsList",loadChildren:()=>import('./news-list/news-list.module').then(module=> module.NewsListModule)},
+  {path:"detail/:id",component:DetailArticleComponent}
 
 ];
 

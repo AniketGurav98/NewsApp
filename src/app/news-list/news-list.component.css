@@ -1,0 +1,37 @@
+.image{
+    margin-inline: auto;
+    height: 40vh;
+    /* aspect-ratio: 3/2; */
+    object-fit :inherit;
+    
+    /* border: 1px solid rgb(10, 10, 10); */
+    border-radius: 1px solid black;
+    margin-bottom: 5px;
+    border: 1px solid black;
+}
+
+/* Example CSS for improving visual appeal */
+.container {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .card {
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .card:hover {
+    transform: scale(1.05);
+  }
+  
+  .pagination {
+    margin-top: 20px;
+  }
+
+  .pointer {
+    cursor: pointer;
+  }
+  
+  .mainBorder{
+    border: 1 solid black;
+  }
+  

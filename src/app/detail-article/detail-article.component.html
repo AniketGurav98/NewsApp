@@ -1,0 +1,50 @@
+<div class="single-news" *ngIf="article">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="sn-container">
+                    <div class="sn-img">
+                        <img src="{{article.img}}" style="height:500px;" />
+                    </div>
+                    <div class="sn-content">
+                        <h1 class="sn-title">{{article.headline}}</h1>
+                        <p [innerHTML]="article.article">
+                         {{article.article}}
+                        </p>
+                    </div>
+                </div>
+                <div class="sn-related">
+                    <h2>Related News</h2>
+                    <div class="row sn-slider ">
+                        <div class="col-md-4" *ngFor="let news of articleList">
+                            <div class="sn-img mt-3 border">
+                                <img src="{{news.img}}" style="height: 200px;"/>
+                                <div class="sn-title">
+                                    <a (click)="navigateToArticle(news._id)">{{news.headline}}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="sidebar">
+                    <div class="sidebar-widget">
+                        <h2 class="sw-title">In This Category</h2>
+                        <div class="news-list"*ngFor="let topNews of topArticle">
+                            <div class="nl-item border"(click)="navigateToArticle(topNews._id)">
+                                <div class="nl-img">
+                                    <img src="{{topNews.img}}" style="width:100px;" />
+                                </div>
+                                <div class="nl-title">
+                                    <a (click)="navigateToArticle(topNews._id)">{{topNews.headline}}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
