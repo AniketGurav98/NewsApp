@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 
 
 const addRoutes: Routes = [
@@ -14,7 +15,8 @@ const addRoutes: Routes = [
 
 @NgModule({
   declarations: [
-    AddNewsComponent
+    AddNewsComponent,
+    AdminPanelComponent
   ],
   imports: [
     CommonModule,

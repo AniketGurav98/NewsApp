@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,6 +12,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { DetailArticleComponent } from './detail-article/detail-article.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
+import { ToastrModule } from 'ngx-toastr';
+import { PrimaryUserComponent } from './primary-user/primary-user.component';
+
 
 
 @NgModule({
@@ -17,13 +22,17 @@ import { NavbarComponent } from './navbar/navbar.component';
     AppComponent,
     LoginComponent,
     DetailArticleComponent,
-    NavbarComponent
+    NavbarComponent,
+    PrimaryUserComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ToastrModule.forRoot(),
+
     
   ],
   providers: [],
