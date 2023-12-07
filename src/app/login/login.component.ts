@@ -65,7 +65,7 @@ export class LoginComponent implements OnInit {
       const enteredOTP = this.otpForm.value.otp;
       const userId = this.loginForm.value.userId;
 
-      this.http.post<any>('http://localhost:3000/api/verifyOTP', { userId, enteredOTP }).subscribe(
+      this.http.post<any>('http://localhost:3000/api/verifyOTP', { userId, enteredOTP },{withCredentials:true}).subscribe(
         (response) => {
           console.log(response, "&&&&&&&");
 

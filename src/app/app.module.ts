@@ -14,6 +14,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 
 import { ToastrModule } from 'ngx-toastr';
 import { PrimaryUserComponent } from './primary-user/primary-user.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 
 
 
@@ -23,7 +24,8 @@ import { PrimaryUserComponent } from './primary-user/primary-user.component';
     LoginComponent,
     DetailArticleComponent,
     NavbarComponent,
-    PrimaryUserComponent
+    PrimaryUserComponent,
+    ContactUsComponent
   ],
   imports: [
     BrowserModule,

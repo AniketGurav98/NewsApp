@@ -8,9 +8,17 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 
 
+import {MatTableModule} from '@angular/material/table';
+import {MatSortModule} from '@angular/material/sort';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatIconModule} from '@angular/material/icon';
+
 const addRoutes: Routes = [
 
   {path:"",component:AddNewsComponent},
+  {path:"admin",component:AdminPanelComponent},
 ];
 
 @NgModule({
@@ -23,7 +31,13 @@ const addRoutes: Routes = [
     RouterModule.forChild(addRoutes),
     FroalaEditorModule.forRoot(),
     FroalaViewModule.forRoot(),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
 
   ]
 })
