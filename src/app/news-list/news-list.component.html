@@ -1,0 +1,104 @@
+<!--Main layout-->
+<div class="container">
+  <!--Section: News of the day-->
+  <section class="border border-dark  py-3 mt-3 mb-5 h-25 " style="height: 40vh;">
+    <div class="row gx-5 mainBorder">
+      <div class="col-md-6 mb-4">
+        <div class="bg-image hover-overlay ripple shadow-2-strong rounded-5 d-flex justify-content-center align-item-center mt-2" data-mdb-ripple-color="light">
+          <img src={{mainImg}} class="img-fluid h-30 "  />
+         
+        </div>
+      </div>
+
+      <div class="col-md-6 ">
+        <span class="badge bg-danger px-2 py-1 shadow-1-strong mb-3">News of the day</span>
+        <h4><strong>{{mainHeadline}}</strong></h4>
+        <p class="text-muted" [innerHTML]="mainArticle | slice:0:300">
+          ...{{mainArticle | slice:0:300}}
+        </p>. . . . .
+        <span><button type="button" class="btn btn-link" (click)="detailArticle(id)">Read more</button>
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="col">
+      <div class="card h-60">
+        <img src="{{ mainImg1 }}" class="card-img-top image rounded" alt="Skyscrapers" />
+        <div class="card-body">
+          <h5 class="card-title">{{mainHeadline1}}</h5>
+          <p class="card-text" [innerHTML]="mainArticle1 |slice:0:250">
+            {{mainArticle1 |slice:0:250}}...
+          </p><span><button class="btn btn-link"(click)="detailArticle(id1)">Read more</button>
+          </span>
+        </div>
+        <!-- <div class="card-footer">
+          <button class="btn btn-primary"(click)="detailArticle(id1)">Read more</button>
+        </div> -->
+      </div>
+    </div>
+
+
+    <div class="col">
+      <div class="card h-60">
+        <img src="{{mainImg2}}" class="card-img-top image rounded" alt="Los Angeles Skyscrapers" />
+        <div class="card-body">
+          <h5 class="card-title">{{mainHeadline2}}</h5>
+          <p class="card-text" [innerHTML]="mainArticle1 |slice:0:250">
+            {{mainArticle1 |slice:0:250}}
+          </p><span><button class="btn btn-link"(click)="detailArticle(id2)">Read more</button>
+          </span>
+        </div>
+        <!-- <div class="card-footer">
+          <button class="btn btn-primary"(click)="detailArticle(id2)">Read more</button>
+        </div> -->
+      </div>
+    </div>
+
+
+    <div class="col">
+      <div class="card h-60">
+        <img src="{{mainImg3}}" class="card-img-top image rounded" alt="Palm Springs Road" />
+        <div class="card-body">
+          <h5 class="card-title">{{mainHeadline3}}</h5>
+          <p class="card-text" [innerHTML]="mainArticle1 |slice:0:250">
+            {{mainArticle1 |slice:0:250}}
+          </p><span><button class="btn btn-link"(click)="detailArticle(id3)">Read more</button>
+          </span>
+        </div>
+        <!-- <div class="card-footer">
+          <button class="btn btn-primary"(click)="detailArticle(id3)">Read more</button>
+
+        </div> -->
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row my-4">
+    <div class="col-12 col-sm-4" *ngFor="let rstArticle of otherArticles">
+      <img src="{{rstArticle.img}}" alt="" style="height: 10vh;" (click)="detailArticle(rstArticle._id)">
+      <p>{{rstArticle.headline}}</p>
+    </div>
+  </div>
+  
+  
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-end">
+      <li class="page-item pointer" [class.disabled]="currentPage === 1">
+        <a class="page-link" (click)="prevPage()" tabindex="-1">Previous</a>
+      </li>
+      <li class="page-item" >
+        <a class="page-link">{{ currentPage }}</a>
+      </li>
+      <li class="page-item pointer" [class.disabled]="otherArticles.length === 0">
+        <a class="page-link" (click)="nextPage()">Next</a>
+      </li>
+    </ul>
+  </nav>
+
+  
+  
+
+</div>

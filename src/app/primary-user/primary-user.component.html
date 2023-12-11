@@ -1,0 +1,34 @@
+<h1>User Registration</h1>
+
+<div [formGroup]="registerForm" class="container mt-5">
+
+    <div *ngIf="message" class="alert alert-success">
+        <p>{{ message }}</p>
+    </div>
+
+    <div *ngIf="!message" class="row">
+        <div class="col-md-6">
+            <label for="userId" class="form-label">Username:</label>
+            <input type="text" id="userId" formControlName="userId" class="form-control" />
+        </div>
+        
+        <div class="col-md-6">
+            <label for="email" class="form-label">Email:</label>
+            <input type="email" id="email" formControlName="email" class="form-control" />
+        </div>
+
+        <div class="col-md-6 mt-3">
+            <label for="Mobile" class="form-label">Mobile:</label>
+            <input type="text" id="Mobile" formControlName="mobile" class="form-control" />
+        </div>
+
+        <div class="col-md-6 mt-3">
+            <label for="password" class="form-label">Password:</label>
+            <input type="password" id="password" formControlName="password" class="form-control" />
+        </div>
+
+        <div class="col-md-12 mt-4">
+            <button (click)="registerUser()" class="btn btn-primary">Register</button>
+        </div>
+    </div>
+</div>

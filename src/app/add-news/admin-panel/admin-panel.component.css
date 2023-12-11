@@ -1,0 +1,39 @@
+.dashboard{
+    margin: 1%;
+}
+
+.filter{
+    width: 30%;
+}
+
+header{
+    font-size: xx-large;
+    margin-bottom: 2%;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+table {
+    width: 100%;
+}
+
+.mat-mdc-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+
+td,
+th {
+    width: 25%;
+}
+
+th.mat-sort-header-sorted {
+    color: black;
+}
+
+.mat-column-srno {
+    width: 2px;
+}
+
+.mat-column-name {
+    width: 2px;
+}
