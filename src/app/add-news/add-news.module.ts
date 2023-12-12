@@ -8,12 +8,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 
 
-import {MatTableModule} from '@angular/material/table';
-import {MatSortModule} from '@angular/material/sort';
-import {MatPaginatorModule} from '@angular/material/paginator';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
-import {MatIconModule} from '@angular/material/icon';
+
+
 
 const addRoutes: Routes = [
 
@@ -29,15 +25,16 @@ const addRoutes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(addRoutes),
+    
+    // MatTableModule,
+    // MatSortModule,
+    // MatPaginatorModule,
+    // MatFormFieldModule,
+    // MatInputModule,
+    // MatIconModule,
     FroalaEditorModule.forRoot(),
     FroalaViewModule.forRoot(),
     ReactiveFormsModule,
-    MatTableModule,
-    MatSortModule,
-    MatPaginatorModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatIconModule,
 
   ]
 })
