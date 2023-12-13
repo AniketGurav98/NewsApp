@@ -4,8 +4,8 @@
   <section class="border border-dark  py-3 mt-3 mb-5 h-25 " style="height: 40vh;">
     <div class="row gx-5 mainBorder">
       <div class="col-md-6 mb-4">
-        <div class="bg-image hover-overlay ripple shadow-2-strong rounded-5 d-flex justify-content-center align-item-center mt-2" data-mdb-ripple-color="light">
-          <img src={{mainImg}} class="img-fluid h-30 "  />
+        <div class="bg-image hover-overlay ripple shadow-2-strong rounded-5 mx-5 mt-2" data-mdb-ripple-color="light">
+          <img src={{mainImg}} class="img-fluid h-15" style="height:40vh;"  />
          
         </div>
       </div>
@@ -16,7 +16,7 @@
         <p class="text-muted" [innerHTML]="mainArticle | slice:0:300">
           ...{{mainArticle | slice:0:300}}
         </p>. . . . .
-        <span><button type="button" class="btn btn-link" (click)="detailArticle(id)">Read more</button>
+        <span><button type="button" class="btn btn-link" (click)="detailArticle(id,mainCategory)">Read more</button>
         </span>
       </div>
     </div>
@@ -30,7 +30,7 @@
           <h5 class="card-title">{{mainHeadline1}}</h5>
           <p class="card-text" [innerHTML]="mainArticle1 |slice:0:250">
             {{mainArticle1 |slice:0:250}}...
-          </p><span><button class="btn btn-link"(click)="detailArticle(id1)">Read more</button>
+          </p><span><button class="btn btn-link"(click)="detailArticle(id1,mainCategory)">Read more</button>
           </span>
         </div>
         <!-- <div class="card-footer">
@@ -47,7 +47,7 @@
           <h5 class="card-title">{{mainHeadline2}}</h5>
           <p class="card-text" [innerHTML]="mainArticle1 |slice:0:250">
             {{mainArticle1 |slice:0:250}}
-          </p><span><button class="btn btn-link"(click)="detailArticle(id2)">Read more</button>
+          </p><span><button class="btn btn-link"(click)="detailArticle(id2,mainCategory)">Read more</button>
           </span>
         </div>
         <!-- <div class="card-footer">
@@ -64,7 +64,7 @@
           <h5 class="card-title">{{mainHeadline3}}</h5>
           <p class="card-text" [innerHTML]="mainArticle1 |slice:0:250">
             {{mainArticle1 |slice:0:250}}
-          </p><span><button class="btn btn-link"(click)="detailArticle(id3)">Read more</button>
+          </p><span><button class="btn btn-link"(click)="detailArticle(id3,mainCategory)">Read more</button>
           </span>
         </div>
         <!-- <div class="card-footer">
@@ -78,7 +78,7 @@
 
   <div class="row my-4">
     <div class="col-12 col-sm-4" *ngFor="let rstArticle of otherArticles">
-      <img src="{{rstArticle.img}}" alt="" style="height: 10vh;" (click)="detailArticle(rstArticle._id)">
+      <img src="{{rstArticle.img}}" alt="" style="height: 10vh;" (click)="detailArticle(rstArticle._id,mainCategory)">
       <p>{{rstArticle.headline}}</p>
     </div>
   </div>

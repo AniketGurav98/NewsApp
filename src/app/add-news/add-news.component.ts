@@ -5,6 +5,8 @@ import { GlobalserviceService } from '../globalservice.service';
 import 'froala-editor/js/plugins.pkgd.min.js';  
 import 'froala-editor/js/froala_editor.pkgd.min.js';  
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -23,15 +25,25 @@ export class AddNewsComponent implements OnInit {
 
   addArticle!: FormGroup
 
-  constructor(private api: GlobalserviceService, private http: HttpClient,private fb : FormBuilder) {}
+  selected:any
+
+  categories:any[]=["Politics","Sports","Weather"]
+
+  constructor(private api: GlobalserviceService, private http: HttpClient,private fb : FormBuilder,
+    private toster : ToastrService , private router : Router
+    ) {}
 
 
   ngOnInit(): void {
     this.addArticle = this.fb.group({
       img : [''],
       article : [''],
-      headline : ['']
+      headline : [''],
+      category : ['']
     })
+
+    this.addArticle.value.category
+
   }
 
   submitArticle(){
@@ -40,6 +52,7 @@ export class AddNewsComponent implements OnInit {
     let obj = {
       img : this.imageSrc ,
       article : this.addArticle.value.article,
+      category : this.addArticle.value.category,
       headline : this.addArticle.value.headline
     }
 
@@ -48,7 +61,8 @@ export class AddNewsComponent implements OnInit {
     const apiUrl =  this.api.getRouterUrl()
     this.http.post(`${apiUrl}/${'addArticle'}`,obj).subscribe((res)=>{
       console.log(res,"[[[[[]]]]]");
-      
+      this.toster.success("Added")
+      this.router.navigateByUrl("")
     })
   }
 

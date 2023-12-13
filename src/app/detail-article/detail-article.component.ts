@@ -45,6 +45,7 @@ export class DetailArticleComponent implements OnInit {
 article: any;
 articleList: any;
 topArticle: any;
+categories:any
 
 constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient, private api: GlobalserviceService) {}
 
@@ -61,11 +62,16 @@ console.log("iiiiii",this.route.snapshot.paramMap.get('id'));
 
     const apiUrl = this.api.getRouterUrl();
 
-    this.http.get(`${apiUrl}/detail/${articleId}`).subscribe((res) => {
+    this.http.get(`${apiUrl}/detail/${articleId}`).subscribe((res:any) => {
       console.log(res, "^^^^^^");
       this.article = res;
+      this.categories = res.category
+      console.log(this.categories,"MY Categories");
+
+      this.category()
     });
   });
+
 }
 
 otherArticle() {
@@ -81,6 +87,20 @@ otherArticle() {
 navigateToArticle(articleId: any) {
   this.router.navigate(['/detail', articleId]);
 }
+
+category(){
+  const apiUrl = this.api.getRouterUrl();
+
+  let myCategory = this.categories
+  console.log(this.categories,"MY Categories");
+  
+  this.http.post(`${apiUrl}/${'getArticleByCategory'}`,{category: myCategory }).subscribe((res:any)=>{
+    console.log(res,"bAni");
+    
+  })
+}
+
+
 }
 
 

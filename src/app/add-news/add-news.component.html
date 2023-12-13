@@ -26,6 +26,18 @@
                     <input type="text" class="form-control" id="headline" formControlName="headline">
                 </div>
 
+                <div class="col-4 my-2">
+                    <label for="News Category" class="d-flex justify-content-start my-2"><b>News Type:</b></label>
+                  
+                    <mat-form-field style="width: 100%;">
+                      <mat-label>Select News Category</mat-label>
+                      <mat-select formControlName="category">
+                        <mat-option *ngFor="let category of categories" [value]="category">{{category}}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                </div>
+                  
+
                 <div class="col-12">
                     <label for="article" class="d-flex justify-content-start my-2"><b>Article :</b></label>
                     <textarea [froalaEditor]="options2" [(froalaModel)]="content" formControlName="article"></textarea>

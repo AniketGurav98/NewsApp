@@ -17,6 +17,7 @@ export class NewsListComponent implements OnInit{
   mainImg: any;
   mainHeadline: any;
   mainArticle: any;
+  mainCategory: any;
 
   mainImg1: any;
   mainHeadline1: any;
@@ -54,7 +55,7 @@ export class NewsListComponent implements OnInit{
     //  console.log(this.currentPage,"[[[");
      window.scroll(0,0)
      this.api.getArticles(this.currentPage).subscribe((data) => {
-      console.log(data,"kkkkk");
+      console.log(data[0].category,"kkkkk");
 
       
 
@@ -72,6 +73,7 @@ export class NewsListComponent implements OnInit{
          this.mainHeadline = this.topArticles[0].headline;
          this.mainArticle = this.topArticles[0].article;
          this.id = this.topArticles[0]._id;
+         this.mainCategory = this.topArticles[0].category
      
      
          if (this.topArticles[1]) {
@@ -126,8 +128,8 @@ export class NewsListComponent implements OnInit{
      }
  }
   
-  detailArticle(e:any){
-    console.log(e,"*********************");
+  detailArticle(e:any,category:any){
+    console.log(category,"*********************");
 
     this.router.navigate(['/detail', e]);
   }
