@@ -31,6 +31,13 @@ const addRoutes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(addRoutes),
+    
+    // MatTableModule,
+    // MatSortModule,
+    // MatPaginatorModule,
+    // MatFormFieldModule,
+    // MatInputModule,
+    // MatIconModule,
     FroalaEditorModule.forRoot(),
     FroalaViewModule.forRoot(),
     ReactiveFormsModule,
