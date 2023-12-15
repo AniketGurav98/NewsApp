@@ -2,8 +2,8 @@
 <div class="container">
     <div class="card">
         <div class="card-header">
-            Add Article
-        </div>
+            {{ isUpdateMode ? 'Update Article' : 'Add Article' }}
+          </div>
 
         <form action="" [formGroup]="addArticle">
             <div class="card-body">
@@ -45,8 +45,9 @@
             </div>
         </form>
         <div class="text-center my-3">
-            <button class="btn btn-success col-4" (click)="submitArticle()">Publish Article</button>
-        </div>
+            <button *ngIf="!isUpdateMode" class="btn btn-success col-4" (click)="submitArticle()">Publish Article</button>
+            <button *ngIf="isUpdateMode" class="btn btn-primary col-4" (click)="updateArticle()">Update Article</button>
+          </div>
     </div>
 </div>
 

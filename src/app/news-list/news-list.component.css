@@ -18,6 +18,16 @@
   .card {
     transition: transform 0.3s ease-in-out;
   }
+
+  .card {
+    height: 400px; /* Adjust the height as needed */
+  }
+  
+  .card-img-top {
+    height: 60%; /* Adjust the height as needed */
+    object-fit: cover;
+  }
+  
   
   .card:hover {
     transform: scale(1.05);
@@ -33,5 +43,10 @@
   
   .mainBorder{
     border: 1 solid black;
+  }
+  
+  .card-img-top {
+    height: 200px; /* Adjust the height as needed */
+    object-fit: cover;
   }
   

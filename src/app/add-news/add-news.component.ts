@@ -6,7 +6,7 @@ import 'froala-editor/js/plugins.pkgd.min.js';
 import 'froala-editor/js/froala_editor.pkgd.min.js';  
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -29,12 +29,18 @@ export class AddNewsComponent implements OnInit {
 
   categories:any[]=["Politics","Sports","Weather"]
 
+  isUpdateMode: boolean = false; // Added variable to track update mode
+
+
   constructor(private api: GlobalserviceService, private http: HttpClient,private fb : FormBuilder,
-    private toster : ToastrService , private router : Router
+    private toster : ToastrService , private router : Router ,private route : ActivatedRoute
     ) {}
 
 
   ngOnInit(): void {
+    
+    this.isUpdateMode = this.route.snapshot.paramMap.has('id');
+
     this.addArticle = this.fb.group({
       img : [''],
       article : [''],
@@ -43,7 +49,7 @@ export class AddNewsComponent implements OnInit {
     })
 
     this.addArticle.value.category
-
+    this.patchArticle()
   }
 
   submitArticle(){
@@ -81,6 +87,50 @@ export class AddNewsComponent implements OnInit {
   }
 
 
+  patchArticle() {
+    this.route.paramMap.subscribe(params => {
+      const id = params.get('id');
+      console.log('ID from URL:', id);
+  
+      const apiUrl = this.api.getRouterUrl();
+  
+      this.http.get(`${apiUrl}/detail/${id}`).subscribe((article: any) => {
+        console.log(article, "^^^^^^");
+  
+        this.imageSrc = article.img;  
+        this.addArticle.patchValue({
+          headline: article.headline,
+          category: article.category,
+          article: article.article,
+        });
+      },
+        (error) => {
+          console.error('Error fetching article details:', error);
+        }
+      );
+    });
+  }
+
+updateArticle() {
+  const id = this.route.snapshot.paramMap.get('id');
+  const apiUrl = this.api.getRouterUrl();
+
+  let obj = {
+    img: this.imageSrc,
+    article: this.addArticle.value.article,
+    category: this.addArticle.value.category,
+    headline: this.addArticle.value.headline,
+  };
+
+  this.http.put(`${apiUrl}/update/${id}`, obj).subscribe(
+    (response) => {
+      console.log('Article updated successfully:', response);
+    },
+    (error) => {
+      console.error('Error updating article:', error);
+    }
+  );
+}
 
 
 }

@@ -134,4 +134,35 @@ export class NewsListComponent implements OnInit{
     this.router.navigate(['/detail', e]);
   }
 
+  editArticle(id:any){
+    console.log(id,"IIIIIIIIIIIIII**********");
+    this.router.navigate(['/add',{id}]);
+
+  }
+
+  deleteArticle(dltId:any) {
+    console.log(dltId,"kKKKKKKKKKKk");
+
+    
+  const isConfirmed = confirm("Are you sure you want to delete this News");
+
+  if (isConfirmed) {
+    const apiUrl = this.api.getRouterUrl();
+
+    this.http.delete(`${apiUrl}/articles/${dltId}`).subscribe(
+      () => {
+        console.log('Article deleted successfully');
+        // Optionally, navigate to a different page after deletion
+        // this.router.navigate(['']);
+        this.ngOnInit()
+      },
+      (error) => {
+        console.error('Error deleting article:', error);
+      }
+    )
+  }
 }
+};
+
+
+

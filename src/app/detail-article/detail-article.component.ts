@@ -88,14 +88,18 @@ navigateToArticle(articleId: any) {
   this.router.navigate(['/detail', articleId]);
 }
 
+categoryList:any
 category(){
   const apiUrl = this.api.getRouterUrl();
 
-  let myCategory = this.categories
-  console.log(this.categories,"MY Categories");
+  let obj = {
+    myCategory: this.categories
+  };
+  // console.log(this.categories,"MY Categories");
   
-  this.http.post(`${apiUrl}/${'getArticleByCategory'}`,{category: myCategory }).subscribe((res:any)=>{
+  this.http.post(`${apiUrl}/${'getArticleByCategory'}`,obj).subscribe((res:any)=>{
     console.log(res,"bAni");
+    this.categoryList = res
     
   })
 }

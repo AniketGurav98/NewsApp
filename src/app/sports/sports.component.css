@@ -1,0 +1,4 @@
+.custom-card-img {
+    height: 200px; /* Adjust the height as needed */
+    object-fit: cover; /* Maintain aspect ratio and cover the entire space */
+  }

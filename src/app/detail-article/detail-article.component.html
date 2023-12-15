@@ -32,7 +32,7 @@
                 <div class="sidebar">
                     <div class="sidebar-widget">
                         <h2 class="sw-title">In This Category</h2>
-                        <div class="news-list"*ngFor="let topNews of topArticle">
+                        <div class="news-list"*ngFor="let topNews of categoryList">
                             <div class="nl-item border"(click)="navigateToArticle(topNews._id)">
                                 <div class="nl-img">
                                     <img src="{{topNews.img}}" style="width:100px;" />
