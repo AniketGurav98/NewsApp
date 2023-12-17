@@ -99,7 +99,7 @@ category(){
   
   this.http.post(`${apiUrl}/${'getArticleByCategory'}`,obj).subscribe((res:any)=>{
     console.log(res,"bAni");
-    this.categoryList = res
+    this.categoryList = res.slice(0,5)
     
   })
 }

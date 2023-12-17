@@ -1,0 +1,32 @@
+<!-- sports-news.component.html -->
+<div class="container">
+    <div class="row">
+      <div *ngFor="let news of sportsNews" class="col-6 col-md-3 mt-4" (click)="detailArticle(news._id)">
+        <div class="card h-100 d-flex flex-column">
+          <img [src]="news.img" class="card-img-top custom-card-img" alt="{{ news.title }}">
+          <div class="card-body flex-fill">
+            <h5 class="card-title">{{ news.headline }}</h5>
+            <p class="card-text">{{ news.description }}</p>
+          </div>
+          <div class="card-footer text-end">
+            <small class="text-muted">{{ news.date | date }}</small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <nav aria-label="Page navigation example" class="d-flex justify-content-center mt-4">
+      <ul class="pagination" *ngIf="sportsNews.length ===8">
+        <li class="page-item pointer" [class.disabled]="currentPage === 1">
+          <a class="page-link" (click)="prevPage()" tabindex="-1">Previous</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link">{{ currentPage }}</a>
+        </li>
+        <li class="page-item pointer" [class.disabled]="sportsNews.length <= 1">
+          <a class="page-link" (click)="nextPage()">Next</a>
+        </li>
+      </ul>
+    </nav>
+</div>
+  

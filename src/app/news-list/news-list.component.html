@@ -2,7 +2,7 @@
 <div class="container">
   <!--Section: News of the day-->
   <section class="border border-dark  py-3 mt-3 mb-5 h-25 " style="height: 40vh;">
-    <div class="row gx-5 mainBorder">
+    <div class="row gx-5 mainBorder" (click)="detailArticle(id,mainCategory)">
       <div class="col-md-6 mb-4">
         <div class="bg-image hover-overlay ripple shadow-2-strong rounded-5 mx-5 mt-2" data-mdb-ripple-color="light">
           <img src={{mainImg}} class="img-fluid h-15" style="height:40vh;"  />
@@ -17,13 +17,15 @@
           ...{{mainArticle | slice:0:800}}
         </p>. . . . .
         <span><button type="button" class="btn btn-link" (click)="detailArticle(id,mainCategory)">Read more</button>
+            <button class="btn btn-outline-success btn-sm" (click)="editArticle(id)">Edit</button>
+      <button class="btn btn-outline-danger btn-sm" (click)="deleteArticle(id)">Delete</button>
         </span>
       </div>
     </div>
   </section>
 
 
-  <div class="row row-cols-1 row-cols-md-3 g-4">
+  <div class="row row-cols-1 row-cols-md-3 g-4" (click)="detailArticle(id1, mainCategory)">
     <div class="col">
       <div class="card h-100 border-1 shadow">
         <img src="{{ mainImg1 }}" class="card-img-top image rounded" alt="Skyscrapers" />
@@ -34,11 +36,13 @@
         </div>
         <div class="card-footer">
           <button class="btn btn-outline-success btn-sm" (click)="editArticle(id1)">Edit</button>
+          <button class="btn btn-outline-danger btn-sm" (click)="deleteArticle(id1)">Delete</button>
+
         </div>
       </div>
     </div>
   
-    <div class="col">
+    <div class="col" (click)="detailArticle(id2, mainCategory)">
       <div class="card h-100 border-2 shadow">
         <img src="{{ mainImg2 }}" class="card-img-top image rounded" alt="Los Angeles Skyscrapers" />
         <div class="card-body">
@@ -48,11 +52,13 @@
         </div>
         <div class="card-footer">
           <button class="btn btn-outline-success btn-sm" (click)="editArticle(id2)">Edit</button>
+          <button class="btn btn-outline-danger btn-sm" (click)="deleteArticle(id2)">Delete</button>
+
         </div>
       </div>
     </div>
   
-    <div class="col">
+    <div class="col" (click)="detailArticle(id3, mainCategory)">
       <div class="card h-100 border-3 shadow">
         <img src="{{ mainImg3 }}" class="card-img-top image rounded" alt="Palm Springs Road" />
         <div class="card-body">
@@ -70,11 +76,13 @@
   
   <hr class="mt-3 border-4 shadow">
   
-  <div class="row my-4">
-    <div class="col-12 col-sm-4" *ngFor="let rstArticle of otherArticles">
+  <div class="row my-4" >
+    <div class="col-12 col-sm-4" *ngFor="let rstArticle of otherArticles"  (click)="editArticle(rstArticle._id)"> 
       <img src="{{rstArticle.img}}" alt="" style="height: 10vh;" (click)="detailArticle(rstArticle._id,mainCategory)">
       <p>{{rstArticle.headline}}</p>
       <button class="btn btn-outline-success btn-sm" (click)="editArticle(rstArticle._id)">Edit</button>
+      <button class="btn btn-outline-danger btn-sm" (click)="deleteArticle(rstArticle._id)">Delete</button>
+
     </div>
   </div>
   

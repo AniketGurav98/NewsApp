@@ -34,10 +34,13 @@ export class AddNewsComponent implements OnInit {
 
   constructor(private api: GlobalserviceService, private http: HttpClient,private fb : FormBuilder,
     private toster : ToastrService , private router : Router ,private route : ActivatedRoute
-    ) {}
+    ) {
+      window.scroll(0,0)
+    }
 
 
   ngOnInit(): void {
+    
     
     this.isUpdateMode = this.route.snapshot.paramMap.has('id');
 
@@ -87,21 +90,21 @@ export class AddNewsComponent implements OnInit {
   }
 
 
-  patchArticle() {
+   patchArticle() {
     this.route.paramMap.subscribe(params => {
       const id = params.get('id');
       console.log('ID from URL:', id);
   
       const apiUrl = this.api.getRouterUrl();
   
-      this.http.get(`${apiUrl}/detail/${id}`).subscribe((article: any) => {
+      this.http.get(`${apiUrl}/detail/${id}`).subscribe(async (article: any) => {
         console.log(article, "^^^^^^");
-  
-        this.imageSrc = article.img;  
-        this.addArticle.patchValue({
-          headline: article.headline,
-          category: article.category,
-          article: article.article,
+        
+         this.imageSrc = article.img;  
+          this.addArticle.patchValue({
+           headline: article.headline,
+           category: article.category,
+           article: article.article,
         });
       },
         (error) => {
@@ -124,6 +127,7 @@ updateArticle() {
 
   this.http.put(`${apiUrl}/update/${id}`, obj).subscribe(
     (response) => {
+      this.router.navigateByUrl('')
       console.log('Article updated successfully:', response);
     },
     (error) => {

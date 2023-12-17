@@ -16,6 +16,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { PrimaryUserComponent } from './primary-user/primary-user.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 
+import {MatMenuModule} from '@angular/material/menu';
+import {MatIconModule} from '@angular/material/icon';
 
 
 @NgModule({
@@ -34,8 +36,8 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
     ReactiveFormsModule,
     HttpClientModule,
     ToastrModule.forRoot(),
-
-    
+    MatMenuModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

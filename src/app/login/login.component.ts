@@ -48,6 +48,7 @@ export class LoginComponent implements OnInit {
             this.otpSent = true;
             localStorage.setItem('detail', response.userId)
 
+
           } else {
             this.toaster.error(response.message)
 
@@ -60,6 +61,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  detail:any
   verifyOTP(): void {
     if (this.otpForm.valid) {
       const enteredOTP = this.otpForm.value.otp;
@@ -70,7 +72,10 @@ export class LoginComponent implements OnInit {
           console.log(response, "&&&&&&&");
 
           if (response.success) {
+
             this.otpVerified = true;
+
+            
             this.api.getToken(response.token)
             setTimeout(() => {
               this.router.navigate(['']);

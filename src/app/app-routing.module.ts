@@ -12,7 +12,7 @@ const routes: Routes = [
   {path:"primaryUser",component:PrimaryUserComponent},
   {path:"add",loadChildren:()=>import('./add-news/add-news.module').then(module=> module.AddNewsModule),canActivate: [AuthGuard] },
   {path:"",loadChildren:()=>import('./news-list/news-list.module').then(module=> module.NewsListModule)},
-  {path:"sports",loadChildren:()=>import('./sports/sports.module').then(module=> module.SportsModule)},
+  {path:"category",loadChildren:()=>import('./category-news/category-news.module').then(module=> module.SportsModule)},
   {path:"detail/:id",component:DetailArticleComponent},
   {path:"contact-us",component:ContactUsComponent}
 
