@@ -17,8 +17,8 @@
           ...{{mainArticle | slice:0:800}}
         </p>. . . . .
         <span><button type="button" class="btn btn-link" (click)="detailArticle(id,mainCategory)">Read more</button>
-            <button class="btn btn-outline-success btn-sm" (click)="editArticle(id)">Edit</button>
-      <button class="btn btn-outline-danger btn-sm" (click)="deleteArticle(id)">Delete</button>
+            <button *ngIf="userId != null" class="btn btn-outline-success btn-sm" (click)="editArticle(id)">Edit</button>
+      <button *ngIf="userId != null" class="btn btn-outline-danger btn-sm" (click)="deleteArticle(id)">Delete</button>
         </span>
       </div>
     </div>
@@ -35,8 +35,8 @@
           <span><p>. . .</p><button class="btn btn-outline-primary btn-sm" (click)="detailArticle(id1, mainCategory)">Read more</button></span>
         </div>
         <div class="card-footer">
-          <button class="btn btn-outline-success btn-sm" (click)="editArticle(id1)">Edit</button>
-          <button class="btn btn-outline-danger btn-sm" (click)="deleteArticle(id1)">Delete</button>
+          <button *ngIf="userId != null" class="btn btn-outline-success btn-sm" (click)="editArticle(id1)">Edit</button>
+          <button *ngIf="userId != null" class="btn btn-outline-danger btn-sm" (click)="deleteArticle(id1)">Delete</button>
 
         </div>
       </div>
@@ -51,8 +51,8 @@
           <span><p>. . .</p><button class="btn btn-outline-primary btn-sm" (click)="detailArticle(id2, mainCategory)">Read more</button></span>
         </div>
         <div class="card-footer">
-          <button class="btn btn-outline-success btn-sm" (click)="editArticle(id2)">Edit</button>
-          <button class="btn btn-outline-danger btn-sm" (click)="deleteArticle(id2)">Delete</button>
+          <button *ngIf="userId != null"  class="btn btn-outline-success btn-sm" (click)="editArticle(id2)">Edit</button>
+          <button *ngIf="userId != null" class="btn btn-outline-danger btn-sm" (click)="deleteArticle(id2)">Delete</button>
 
         </div>
       </div>
@@ -67,8 +67,8 @@
           <span><p>. . .</p><button class="btn btn-outline-primary btn-sm" (click)="detailArticle(id3, mainCategory)">Read more</button></span>
         </div>
         <div class="card-footer">
-          <button class="btn btn-outline-success btn-sm" (click)="editArticle(id3)">Edit</button>
-          <button class="btn btn-outline-danger btn-sm" (click)="deleteArticle(id3)">Delete</button>
+          <button *ngIf="userId != null" class="btn btn-outline-success btn-sm" (click)="editArticle(id3)">Edit</button>
+          <button *ngIf="userId != null" class="btn btn-outline-danger btn-sm" (click)="deleteArticle(id3)">Delete</button>
         </div>
       </div>
     </div>
@@ -80,8 +80,8 @@
     <div class="col-12 col-sm-4" *ngFor="let rstArticle of otherArticles"  (click)="editArticle(rstArticle._id)"> 
       <img src="{{rstArticle.img}}" alt="" style="height: 10vh;" (click)="detailArticle(rstArticle._id,mainCategory)">
       <p>{{rstArticle.headline}}</p>
-      <button class="btn btn-outline-success btn-sm" (click)="editArticle(rstArticle._id)">Edit</button>
-      <button class="btn btn-outline-danger btn-sm" (click)="deleteArticle(rstArticle._id)">Delete</button>
+      <button *ngIf="userId != null" class="btn btn-outline-success btn-sm" (click)="editArticle(rstArticle._id)">Edit</button>
+      <button  *ngIf="userId != null"  class="btn btn-outline-danger btn-sm" (click)="deleteArticle(rstArticle._id)">Delete</button>
 
     </div>
   </div>

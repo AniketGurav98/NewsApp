@@ -35,7 +35,7 @@
       <!-- Social icons --> 
       <ul class="navbar-nav ml-auto mb-2 mb-lg-0 d-flex flex-column flex-sm-row">
         <li class="nav-item mb-2">
-          <button  class="nav-link"  mat-button [matMenuTriggerFor]="beforeMenu">{{ detail | titlecase }}</button>
+          <button  class="nav-link"  mat-button [matMenuTriggerFor]="beforeMenu">{{ userId | titlecase }}</button>
           <mat-menu #beforeMenu="matMenu" xPosition="before">
             <button  class="nav-link"routerLink="/admin" mat-menu-item>
               <i class="fas fa-user-circle"></i> 

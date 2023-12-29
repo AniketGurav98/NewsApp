@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -18,6 +18,8 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 
 import {MatMenuModule} from '@angular/material/menu';
 import {MatIconModule} from '@angular/material/icon';
+import { GlobalserviceService } from './globalservice.service';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 
 @NgModule({
@@ -27,7 +29,7 @@ import {MatIconModule} from '@angular/material/icon';
     DetailArticleComponent,
     NavbarComponent,
     PrimaryUserComponent,
-    ContactUsComponent
+    ContactUsComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,9 +39,18 @@ import {MatIconModule} from '@angular/material/icon';
     HttpClientModule,
     ToastrModule.forRoot(),
     MatMenuModule,
-    MatIconModule
+    MatIconModule,
+   
   ],
-  providers: [],
+  providers: [
+    GlobalserviceService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: (appInitializer: GlobalserviceService) => () => appInitializer.initializeFunforUserID(),
+      multi: true,
+      deps: [GlobalserviceService]
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

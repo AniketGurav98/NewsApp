@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { GlobalserviceService } from '../globalservice.service';
 import { Route, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-news-list',
@@ -41,12 +42,26 @@ export class NewsListComponent implements OnInit{
 
   totalArticles: any
 
-  constructor(private http:HttpClient,private api :GlobalserviceService, private router : Router){}
+  userId:any
+
+  constructor(private http:HttpClient,private api :GlobalserviceService, private router : Router ,private toastr : ToastrService){
+    this.api.getDatafromLogingForToken().subscribe((data) => {
+      console.log(data,"poopopoppo");
+      
+      this.userId = data
+    })
+  }
 
 
   ngOnInit(): void {
 
-    this.loadArticles()
+    this.loadArticles();
+
+    if(localStorage.getItem('detail')=== null){
+      console.log("not empty");
+      
+    } else {console.log("empty");
+    }
    }
  
    totalPages:any
@@ -162,6 +177,9 @@ export class NewsListComponent implements OnInit{
     )
   }
 }
+
+
+
 };
 
 

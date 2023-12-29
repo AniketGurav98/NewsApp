@@ -75,8 +75,13 @@ export class LoginComponent implements OnInit {
 
             this.otpVerified = true;
 
-            
-            this.api.getToken(response.token)
+            this.api.data$.subscribe((e:any)=>{
+              console.log(e,"[]]]]]]]]]]]]]]");
+              
+            })
+            this.api.getToken(response.token);
+
+            this.api.setTokenName(response.token)
             setTimeout(() => {
               this.router.navigate(['']);
             }, 1000);

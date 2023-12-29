@@ -9,6 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
 
 
+
 @Component({
   selector: 'app-add-news',
   templateUrl: './add-news.component.html',
@@ -33,7 +34,7 @@ export class AddNewsComponent implements OnInit {
 
 
   constructor(private api: GlobalserviceService, private http: HttpClient,private fb : FormBuilder,
-    private toster : ToastrService , private router : Router ,private route : ActivatedRoute
+    private toster : ToastrService , private router : Router ,private route : ActivatedRoute,  
     ) {
       window.scroll(0,0)
     }
@@ -72,8 +73,36 @@ export class AddNewsComponent implements OnInit {
       console.log(res,"[[[[[]]]]]");
       this.toster.success("Added")
       this.router.navigateByUrl("")
+
+      // this.notifySubscribersAboutNewArticle(obj.headline);
+
     })
   }
+
+  // private notifySubscribersAboutNewArticle(articleHeadline: string) {
+  //   // Get the current subscription
+
+  //   let vapidKey = "BFsVH8U8RZuSbVbs-ZyN0O54QyZ289Puh--YVqDkGxOxyYl3YFwLCojNiac667mQRDLxQrjChFep_22XlVdPo8w"
+  //   this.swPush.requestSubscription({
+      
+  //     serverPublicKey: vapidKey
+  //   })
+  //   .then((subscription) => {
+  //     // Send the subscription and article headline to your Node.js server
+  //     const payload = { headline: articleHeadline };
+  //     this.http.post(`${this.api.getRouterUrl()}/send-notification`, { subscription, payload })
+  //       .subscribe(response => {
+  //         console.log('Notification sent successfully:', response);
+  //       });
+  //   })
+  //   .catch((err) => {
+  //     if (Notification.permission === 'denied') {
+  //       console.warn('Permission for notifications was denied');
+  //     } else {
+  //       console.error('Could not subscribe to notifications', err);
+  //     }
+  //   });
+  // }
 
 
 

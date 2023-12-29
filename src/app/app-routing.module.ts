@@ -14,7 +14,7 @@ const routes: Routes = [
   {path:"",loadChildren:()=>import('./news-list/news-list.module').then(module=> module.NewsListModule)},
   {path:"category",loadChildren:()=>import('./category-news/category-news.module').then(module=> module.SportsModule)},
   {path:"detail/:id",component:DetailArticleComponent},
-  {path:"contact-us",component:ContactUsComponent}
+  {path:"contact-us",component:ContactUsComponent},
 
 ];
 
