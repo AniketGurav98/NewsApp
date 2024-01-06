@@ -21,6 +21,18 @@ import {MatIconModule} from '@angular/material/icon';
 import { GlobalserviceService } from './globalservice.service';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
+import { initializeApp } from 'firebase/app';
+import { provideFirebaseApp, getApp } from '@angular/fire/app';
+import { getMessaging } from '@angular/fire/messaging';
+
+import { environment } from '../environments/environment';
+
+// Initialize Firebase
+const firebaseConfig = environment.firebaseConfig;
+const app = initializeApp(firebaseConfig);
+
+// Get the messaging instance
+const messaging = getMessaging(app);
 
 @NgModule({
   declarations: [
@@ -40,6 +52,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     ToastrModule.forRoot(),
     MatMenuModule,
     MatIconModule,
+    provideFirebaseApp(() => getApp()),
    
   ],
   providers: [

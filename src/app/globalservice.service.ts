@@ -4,6 +4,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import jwt_decode from "jwt-decode";
 import { Router } from '@angular/router';
 
+import { AngularFireMessaging } from '@angular/fire/messaging';
+
 
 
 
@@ -16,8 +18,21 @@ export class GlobalserviceService {
   private behaviorSubject = new BehaviorSubject<any>(null);
   private dataSubject = new BehaviorSubject<string>('');
   data$ = this.dataSubject.asObservable();
+  currentMessage: any;
+  afMessaging: any;
 
-  constructor(private http: HttpClient, private router: Router ,) { }
+  constructor(private http: HttpClient, private router: Router ,private angularFireMessaging: AngularFireMessaging) {
+
+    this.angularFireMessaging.messages.subscribe(
+      (message:any) => {
+        console.log('Message received. ', message);
+        this.currentMessage.next(message);
+      },
+      (error:any) => {
+        console.error('Error in receiving message. ', error);
+      }
+    );
+   }
 
   getRouterUrl(): string {
     return `${this.apiUrl}/api`;
@@ -40,6 +55,25 @@ export class GlobalserviceService {
       localStorage.setItem('token', data);
       this.dataSubject.next('login');
     }
+  }
+
+  requestPermission() {
+    this.afMessaging.requestToken.subscribe(
+      (token:any) => {
+        console.log('Permission granted! Save to the server!', token);
+        // Save the token to your server
+      },
+      (error:any) => {
+        console.error(error);
+      }
+    );
+  }
+
+  receiveMessages() {
+    this.afMessaging.messages.subscribe((message:any) => {
+      console.log('Received message:', message);
+      // Handle the received message
+    });
   }
   
 
@@ -85,7 +119,7 @@ export class GlobalserviceService {
     return this.behaviorSubject.asObservable();
   }
 
-  initializeFunforUserID(): void {
+  initializeFunforUserID() {
     const api = this.getRouterUrl()
     this.http.get(`${api}/check-cookies-token`, { withCredentials: true }).subscribe(
       (response: any) => {
