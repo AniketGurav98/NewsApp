@@ -22,8 +22,7 @@
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets",
-              "src/manifest.webmanifest"
+              "src/assets"
             ],
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",
@@ -44,9 +43,7 @@
               "node_modules/froala-editor/js/froala_editor.pkgd.min.js",
               "node_modules/froala-editor/js/plugins.pkgd.min.js"
 
-            ],
-            "serviceWorker": true,
-            "ngswConfigPath": "ngsw-config.json"
+            ]
           },
           "configurations": {
             "production": {
@@ -109,8 +106,7 @@
             "tsConfig": "tsconfig.spec.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets",
-              "src/manifest.webmanifest"
+              "src/assets"
             ],
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",
@@ -123,10 +119,6 @@
     }
   },
   "cli": {
-<<<<<<< HEAD
-    "analytics": "14644dff-7feb-4c95-a9c1-ad2b3d75d1c9"
-=======
     "analytics": "cb4ece99-01cf-463e-a274-71431b824e69"
->>>>>>> 8bed521611e8f7893f0b94e5a679df31ef05c72c
   }
 }

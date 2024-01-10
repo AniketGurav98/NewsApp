@@ -27,6 +27,8 @@ export class GlobalserviceService {
     return 'http://localhost:3000';
   }
 
+
+
   getArticles(page: number): Observable<any> {
     const url = `${this.apiUrl}/api/getArticles?page=${page}`;
     return this.http.get(url);

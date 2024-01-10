@@ -62,7 +62,9 @@ export class NewsListComponent implements OnInit{
       
     } else {console.log("empty");
     }
+    // this.subscribeToNotifications()
    }
+
  
    totalPages:any
  
@@ -177,6 +179,7 @@ export class NewsListComponent implements OnInit{
     )
   }
 }
+
 
 
 
