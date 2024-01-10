@@ -101,6 +101,8 @@ export class GlobalserviceService {
           this.startTimer(storedData);
         } else {
           localStorage.removeItem('detail');
+
+          
         }
       });
   }
