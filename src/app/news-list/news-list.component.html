@@ -1,6 +1,13 @@
 <!--Main layout-->
 <div class="container">
   <!--Section: News of the day-->
+  <!-- <button (click)="subscribe()">Subscribe to Notifications</button> -->
+  <button (click)="requestNotificationPermission()">Request Notification Permission</button>
+  <button (click)="createNotification()">Create Notification</button>
+
+  <p>Notification Permission Status: {{ permissionStatus$ | async }}</p>
+
+
   <section class="border border-dark  py-3 mt-3 mb-5 h-25 " style="height: 40vh;">
     <div class="row gx-5 mainBorder" (click)="detailArticle(id,mainCategory)">
       <div class="col-md-6 mb-4">
