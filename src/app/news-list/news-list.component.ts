@@ -4,15 +4,17 @@ import { GlobalserviceService } from '../globalservice.service';
 import { Route, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
+
+
 @Component({
   selector: 'app-news-list',
   templateUrl: './news-list.component.html',
   styleUrls: ['./news-list.component.css']
 })
-export class NewsListComponent implements OnInit{
+export class NewsListComponent implements OnInit {
 
   topArticles: any[] = []; // Define a variable to store the retrieved articles
-  otherArticles : any = []
+  otherArticles: any = []
   imgSrc: any;
 
   mainImg: any;
@@ -42,12 +44,12 @@ export class NewsListComponent implements OnInit{
 
   totalArticles: any
 
-  userId:any
+  userId: any
 
-  constructor(private http:HttpClient,private api :GlobalserviceService, private router : Router ,private toastr : ToastrService){
+  constructor(private http: HttpClient, private api: GlobalserviceService, private router: Router, private toastr: ToastrService) {
     this.api.getDatafromLogingForToken().subscribe((data) => {
-      console.log(data,"poopopoppo");
-      
+      console.log(data, "poopopoppo");
+
       this.userId = data
     })
   }
@@ -55,132 +57,221 @@ export class NewsListComponent implements OnInit{
 
   ngOnInit(): void {
 
+    this.api.requestPermission().then(permission => {
+      if(permission === "granted"){
+        console.log("granted");
+        
+        this.addCountsOfUser()
+      }
+      else if (permission === "denied"){
+        this.removeCountsOfUser()
+
+        console.log("denied");
+        
+      }else{
+
+        console.log("default");
+        
+      }
+      // console.log('Notification permission:', permission);
+    });
+    
+
     this.loadArticles();
 
-    if(localStorage.getItem('detail')=== null){
+    if (localStorage.getItem('detail') === null) {
       console.log("not empty");
-      
-    } else {console.log("empty");
+
+    } else {
+      console.log("empty");
     }
-    // this.subscribeToNotifications()
-   }
+  }
 
- 
-   totalPages:any
- 
-   loadArticles() {
+  totalPages: any
+
+  loadArticles() {
     //  console.log(this.currentPage,"[[[");
-     window.scroll(0,0)
-     this.api.getArticles(this.currentPage).subscribe((data) => {
-      console.log(data[0].category,"kkkkk");
+    window.scroll(0, 0)
+    this.api.getArticles(this.currentPage).subscribe((data) => {
+      console.log(data[0].category, "kkkkk");
 
-      
 
-     
+
+
       this.topArticles = data.slice(0, 4);
- 
+
       this.otherArticles = data.slice(4);
-  
+
       console.log('Top Articles:', this.topArticles);
       console.log('Other Articles:', this.otherArticles);
       if (this.topArticles && this.topArticles.length > 0) {
-   
- 
-         this.mainImg = this.topArticles[0].img;
-         this.mainHeadline = this.topArticles[0].headline;
-         this.mainArticle = this.topArticles[0].article;
-         this.id = this.topArticles[0]._id;
-         this.mainCategory = this.topArticles[0].category
-     
-     
-         if (this.topArticles[1]) {
-           this.mainImg1 = this.topArticles[1].img;
-           this.mainHeadline1 = this.topArticles[1].headline;
-           this.mainArticle1 = this.topArticles[1].article;
-           this.id1 = this.topArticles[1]._id;
-         }
-     
-         if(this.topArticles[2]) {
-           this.mainImg2= this.topArticles[2].img; 
-           this.mainHeadline2= this.topArticles[2].headline; 
-           this.mainArticle2= this.topArticles[2].article;
-           this.id2 = this.topArticles[2]._id; 
-         }
-         
-         if(this.topArticles[3]){
-             
-           this.mainImg3= this.topArticles[3].img; 
-           this.mainHeadline3= this.topArticles[3].headline; 
-           this.mainArticle3= this.topArticles[3].article; 
-           this.id3 = this.topArticles[3]._id; 
-     
-         }
-        //  this.totalPages = this.calculateTotalPages(this.totalArticles, this.itemsPerPage);
+
+
+        this.mainImg = this.topArticles[0].img;
+        this.mainHeadline = this.topArticles[0].headline;
+        this.mainArticle = this.topArticles[0].article;
+        this.id = this.topArticles[0]._id;
+        this.mainCategory = this.topArticles[0].category
+
+
+        if (this.topArticles[1]) {
+          this.mainImg1 = this.topArticles[1].img;
+          this.mainHeadline1 = this.topArticles[1].headline;
+          this.mainArticle1 = this.topArticles[1].article;
+          this.id1 = this.topArticles[1]._id;
+        }
+
+        if (this.topArticles[2]) {
+          this.mainImg2 = this.topArticles[2].img;
+          this.mainHeadline2 = this.topArticles[2].headline;
+          this.mainArticle2 = this.topArticles[2].article;
+          this.id2 = this.topArticles[2]._id;
+        }
+
+        if (this.topArticles[3]) {
+
+          this.mainImg3 = this.topArticles[3].img;
+          this.mainHeadline3 = this.topArticles[3].headline;
+          this.mainArticle3 = this.topArticles[3].article;
+          this.id3 = this.topArticles[3]._id;
 
         }
-         
-     
- 
-     
-      
-     });
-   }
+        //  this.totalPages = this.calculateTotalPages(this.totalArticles, this.itemsPerPage);
+
+      }
+
+
+
+
+
+    });
+  }
 
   //  calculateTotalPages(totalArticles: number, itemsPerPage: number): number {
   //   return Math.ceil(totalArticles / itemsPerPage);
   // }
 
-  
- 
-   nextPage() {
-     this.currentPage++;
-     this.loadArticles();
-   }
- 
- 
-   prevPage() {
-     if (this.currentPage > 1) {
-       this.currentPage--;
-       this.loadArticles();
-     }
- }
-  
-  detailArticle(e:any,category:any){
-    console.log(category,"*********************");
+
+
+  nextPage() {
+    this.currentPage++;
+    this.loadArticles();
+  }
+
+
+  prevPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.loadArticles();
+    }
+  }
+
+  detailArticle(e: any, category: any) {
+    console.log(category, "*********************");
 
     this.router.navigate(['/detail', e]);
   }
 
-  editArticle(id:any){
-    console.log(id,"IIIIIIIIIIIIII**********");
-    this.router.navigate(['/add',{id}]);
+  editArticle(id: any) {
+    console.log(id, "IIIIIIIIIIIIII**********");
+    this.router.navigate(['/add', { id }]);
 
   }
 
-  deleteArticle(dltId:any) {
-    console.log(dltId,"kKKKKKKKKKKk");
+  deleteArticle(dltId: any) {
+    console.log(dltId, "kKKKKKKKKKKk");
+
+
+    const isConfirmed = confirm("Are you sure you want to delete this News");
+
+    if (isConfirmed) {
+      const apiUrl = this.api.getRouterUrl();
+
+      this.http.delete(`${apiUrl}/articles/${dltId}`).subscribe(
+        () => {
+          console.log('Article deleted successfully');
+          // Optionally, navigate to a different page after deletion
+          // this.router.navigate(['']);
+          this.ngOnInit()
+        },
+        (error) => {
+          console.error('Error deleting article:', error);
+        }
+      )
+    }
+  }
+
+  // subscribe() {
+  //   this.api.subscribeToNotifications();
+  // }
+
+
+  // {"publicKey":"BE3CGh4JDywu4sGTMxtH49zfW36aAHzCXstWYZtyaIdhQgu64LV1nHXK9CQbjpA3yzV4H5AvjqBqo5ApLUu_i2s",
+  // "privateKey":"a7Kreimr1kb4l3JvH-JkxXWh73WFIxNWthV5mz56ZSs"}
+
+  requestNotificationPermission() {
+    this.api.requestPermission().then(permission => {
+      if(permission === "granted"){
+        console.log("granted");
+        
+        this.addCountsOfUser()
+      }
+      else if (permission === "denied"){
+        this.removeCountsOfUser()
+        console.log("denied");
+        
+      }else{
+
+        console.log("default");
+        
+      }
+      // console.log('Notification permission:', permission);
+    });
+  }
+
+
+  removeCountsOfUser(){
+   let token = localStorage.getItem('NF Token')
+   const apiUrl = `${this.api.getRouterUrl()}/RemovecountOfUserForNF`;
+  this.http.post(apiUrl,{token:token}).subscribe((res:any)=>{
+    console.log(res);
+    
+    if(res.status === true){
+      console.log(res.status);
+      
+      localStorage.removeItem("NF Token")
+    }
+   })
+  }
+
+  addCountsOfUser(){
+    const apiUrl = `${this.api.getRouterUrl()}/countOfUserForNF`;
+
+     this.http.get(apiUrl).subscribe((res:any)=>{
+      console.log(res);
+      
+      if(res.status === true){
+        console.log(res.status);
+        
+        localStorage.setItem("NF Token",res.data.token)
+      }
+     })
 
     
-  const isConfirmed = confirm("Are you sure you want to delete this News");
-
-  if (isConfirmed) {
-    const apiUrl = this.api.getRouterUrl();
-
-    this.http.delete(`${apiUrl}/articles/${dltId}`).subscribe(
-      () => {
-        console.log('Article deleted successfully');
-        // Optionally, navigate to a different page after deletion
-        // this.router.navigate(['']);
-        this.ngOnInit()
-      },
-      (error) => {
-        console.error('Error deleting article:', error);
-      }
-    )
   }
-}
+
+  permissionStatus$ = this.api.getPermissionStatus();
 
 
+  createNotification() {
+    const notification = this.api.createNotification('Hello, Angular!', {
+      body: 'This is a notification from your Angular app.',
+    });
+
+    notification.onclick = (event) => {
+      console.log('Notification clicked', event);
+    };
+  }
 
 
 };

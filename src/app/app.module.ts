@@ -19,6 +19,8 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatIconModule} from '@angular/material/icon';
 import { GlobalserviceService } from './globalservice.service';
+// import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from 'src/environments/environment';
 
 
 @NgModule({

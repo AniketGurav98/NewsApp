@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import jwt_decode from "jwt-decode";
 import { Router } from '@angular/router';
+// import { SwPush } from '@angular/service-worker';
 
 
 
@@ -16,8 +17,53 @@ export class GlobalserviceService {
   private behaviorSubject = new BehaviorSubject<any>(null);
   private dataSubject = new BehaviorSubject<string>('');
   data$ = this.dataSubject.asObservable();
+  private permissionSubject: BehaviorSubject<NotificationPermission>;
 
-  constructor(private http: HttpClient, private router: Router ,) { }
+  constructor(private http: HttpClient, private router: Router) {
+
+    this.permissionSubject = new BehaviorSubject<NotificationPermission>('default');
+
+    this.updatePermissionStatus();
+
+   }
+
+   
+  private updatePermissionStatus() {
+    Notification.requestPermission().then(permission => {
+      this.permissionSubject.next(permission as NotificationPermission);
+    });
+  }
+
+  getPermissionStatus(): Observable<NotificationPermission> {
+    return this.permissionSubject.asObservable();
+  }
+
+  requestPermission(): Promise<NotificationPermission> {
+    return Notification.requestPermission().then(permission => {
+      this.permissionSubject.next(permission as NotificationPermission);
+      return permission as NotificationPermission;
+    });
+  }
+
+  createNotification(title: string, options?: NotificationOptions): Notification {
+    return new Notification(title, options);
+  }
+
+
+  private sendSubscriptionToServer(sub: PushSubscription) {
+    // Send the subscription details to your Node.js server
+    // Use HttpClient or another method to make a POST request
+  }
+
+
+
+  // requestPermission(): Promise<NotificationPermission> {
+  //   return Notification.requestPermission();
+  // }
+
+  // createNotification(title: string, options?: NotificationOptions): Notification {
+  //   return new Notification(title, options);
+  // }
 
   getRouterUrl(): string {
     return `${this.apiUrl}/api`;
